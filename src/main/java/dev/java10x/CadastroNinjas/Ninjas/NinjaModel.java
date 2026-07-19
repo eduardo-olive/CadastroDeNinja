@@ -1,6 +1,9 @@
-package dev.java10x.CadastroNinjas;
+package dev.java10x.CadastroNinjas.Ninjas;
 
+import dev.java10x.CadastroNinjas.MIssoes.MissaoModel;
 import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -9,9 +12,17 @@ public class NinjaModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String nome;
+
     private String email;
+
     private int idade;
+
+    // @ManyToOne um ninja tem uma unica missão
+    @ManyToOne()
+    @JoinColumn(name = "missoes_id")
+    private List<MissaoModel> missoes;
 
     public NinjaModel() {
     }

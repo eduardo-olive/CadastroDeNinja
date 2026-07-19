@@ -1,4 +1,4 @@
-package dev.java10x.CadastroNinjas;
+package dev.java10x.CadastroNinjas.MIssoes;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping
-public class Controller {
+public class MIssaoController {
 
-
-    @GetMapping("/boasvindas")
-    public String boasVindas(){
-        return "Essa é a minha primeira mensagem nessa rota.";
+    @GetMapping("/missoes")
+    public String missoes(){
+        return "Rota principal de missões";
     }
-
 }

@@ -2,9 +2,15 @@ package dev.java10x.CadastroNinjas.MIssoes;
 
 import dev.java10x.CadastroNinjas.Ninjas.NinjaModel;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_missoes")
+@Data // Anotation responsavel por criar os Getrs e os Seters, caso queira fazer na "munheca" só omitir a anotation
+@NoArgsConstructor
+@AllArgsConstructor
 public class MissaoModel {
 
     @Id
@@ -19,35 +25,4 @@ public class MissaoModel {
     @OneToMany(mappedBy = "missoes")
     private NinjaModel ninja;
 
-    public MissaoModel() {
-    }
-
-    public MissaoModel(String nome, String dificuldade) {
-        this.nome = nome;
-        this.dificuldade = dificuldade;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDificuldade() {
-        return dificuldade;
-    }
-
-    public void setDificuldade(String dificuldade) {
-        this.dificuldade = dificuldade;
-    }
 }

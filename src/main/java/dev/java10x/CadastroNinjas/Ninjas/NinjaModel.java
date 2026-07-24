@@ -1,12 +1,10 @@
 package dev.java10x.CadastroNinjas.Ninjas;
 
-import dev.java10x.CadastroNinjas.MIssoes.MissaoModel;
+import dev.java10x.CadastroNinjas.MIssoes.MissaoesModel;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Table(name = "tb_cadastro")
@@ -36,5 +34,5 @@ public class NinjaModel {
     // @ManyToOne um ninja tem uma unica missão
     @ManyToOne()
     @JoinColumn(name = "missoes_id")
-    private MissaoModel missoes;
+    private MissaoesModel missoes;
 }

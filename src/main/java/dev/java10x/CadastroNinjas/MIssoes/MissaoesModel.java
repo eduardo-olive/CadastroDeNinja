@@ -13,7 +13,7 @@ import java.util.List;
 @Data // Anotation responsavel por criar os Getrs e os Seters, caso queira fazer na "munheca" só omitir a anotation
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissaoModel {
+public class MissaoesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

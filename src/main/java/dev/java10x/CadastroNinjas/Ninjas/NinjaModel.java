@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "tb_cadastro")
-@Data // Anotation responsavel por criar os Getrs e os Seters, caso queira fazer na "munheca" só omitir a anotation
+@Data // Anotation responsavel por criar os Getrs e os Seters. caso queira fazer na "munheca" só omitir a anotation
 @NoArgsConstructor // Cria construtor sem argumentos
 @AllArgsConstructor // Cria construtor com todos os argumentos da classe
 public class NinjaModel {
@@ -30,6 +30,9 @@ public class NinjaModel {
 
     @Column(name = "idade")
     private int idade;
+
+    @Column(name = "rank")
+    private String rank;
 
     // @ManyToOne um ninja tem uma unica missão
     @ManyToOne()

@@ -30,8 +30,8 @@ public class NinjaService {
         return ninjaRepository.save(ninja);
     }
 
-    // Excluir um ninja
-    public NinjaModel excluirNinja(Long id){
-        return ninjaRepository.deleteById(id);
+    //Excluir um ninja
+    public void excluirNinjaPorId(Long id){
+        ninjaRepository.deleteById(id);
     }
 }

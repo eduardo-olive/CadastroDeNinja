@@ -14,11 +14,11 @@ import java.util.List;
 @Data // Anotation responsavel por criar os Getrs e os Seters, caso queira fazer na "munheca" só omitir a anotation
 @NoArgsConstructor
 @AllArgsConstructor
-public class MissaoesModel {
+public class MissoesModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String nome;
 

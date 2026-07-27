@@ -1,4 +1,4 @@
-package dev.java10x.CadastroNinjas.MIssoes;
+package dev.java10x.CadastroNinjas.Missoes;
 
 import org.springframework.web.bind.annotation.*;
 

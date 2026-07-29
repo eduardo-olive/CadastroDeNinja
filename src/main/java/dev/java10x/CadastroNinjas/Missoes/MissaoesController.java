@@ -22,16 +22,16 @@ public class MissaoesController {
     }
 
     @PostMapping("/missao")
-    public ResponseEntity<MissoesModel> criarMissao(@RequestBody MissoesModel missao)
+    public ResponseEntity<MissoesDTO> criarMissao(@RequestBody MissoesDTO missao)
     {
-        MissoesModel missaoCriada =  missoesService.criarMissao(missao);
+        MissoesDTO missaoCriada =  missoesService.criarMissao(missao);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(missaoCriada);
     }
 
     @GetMapping("/missao")
-    public ResponseEntity<List<MissoesModel>> mostrarMissoes()
+    public ResponseEntity<List<MissoesDTO>> mostrarMissoes()
     {
         return ResponseEntity.ok(missoesService.listarMisssoes());
     }
@@ -39,7 +39,7 @@ public class MissaoesController {
     @GetMapping("/missao/{id}")
     public ResponseEntity<?> mostarMissao(@PathVariable Long id)
     {
-        MissoesModel missao = missoesService.listarMIssaoPorId(id);
+        MissoesDTO missao = missoesService.listarMIssaoPorId(id);
         if (missao != null){
             return ResponseEntity.ok(missao);
         }
@@ -49,14 +49,14 @@ public class MissaoesController {
     }
 
     @PutMapping("/missao/{id}")
-    public ResponseEntity<?> atualizarMissao(@PathVariable Long id, @RequestBody MissoesModel missaoModel)
+    public ResponseEntity<?> atualizarMissao(@PathVariable Long id, @RequestBody MissoesDTO missaoDTO)
     {
         if (missoesService.listarMIssaoPorId(id) != null){
-            MissoesModel missao = missaoModel;
+            MissoesDTO missao = missaoDTO;
             missao.setId(id);
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(missoesService.atualizarMissao(id, missaoModel));
+                    .body(missoesService.atualizarMissao(id, missao));
         }
         return ResponseEntity
                     .status(HttpStatus.NOT_FOUND)

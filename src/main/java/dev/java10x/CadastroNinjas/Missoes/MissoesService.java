@@ -4,37 +4,50 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MissoesService {
 
     private MissoesRepository missoesRepository;
+    private MissoesMapper missoesMapper;
 
-    public MissoesService(MissoesRepository missoesRepository) {
+    public MissoesService(MissoesRepository missoesRepository, MissoesMapper missoesMapper)
+    {
         this.missoesRepository = missoesRepository;
+        this.missoesMapper = missoesMapper;
     }
 
-    public MissoesModel criarMissao(MissoesModel missao){
-        return missoesRepository.save(missao);
+    public MissoesDTO criarMissao(MissoesDTO missaoDTO)
+    {
+        MissoesModel missao = missoesMapper.map(missaoDTO);
+        return missoesMapper.map(missoesRepository.save(missao));
     }
 
-    public List<MissoesModel> listarMisssoes(){
-        return missoesRepository.findAll();
+    public List<MissoesDTO> listarMisssoes()
+    {
+        List<MissoesModel> missoes = missoesRepository.findAll();
+        return missoes.stream()
+                .map(missoesMapper::map)
+                .collect(Collectors.toList());
     }
 
-    public MissoesModel listarMIssaoPorId(Long id){
+    public MissoesDTO listarMIssaoPorId(Long id){
         Optional<MissoesModel> missao = missoesRepository.findById(id);
-        return missao.orElse(null);
+        return missao.map(missoesMapper::map).orElse(null);
     }
 
     public void excluirMissao(Long id) {
         missoesRepository.deleteById(id);
     }
-    public MissoesModel atualizarMissao(Long id, MissoesModel missao){
-        if(missoesRepository.findById(id) != null) {
-            MissoesModel missaoAtualizado = missao;
-            missaoAtualizado.setId(id);
-            return missoesRepository.save(missaoAtualizado);
+
+    public MissoesDTO atualizarMissao(Long id, MissoesDTO missao){
+        Optional<MissoesModel> missaoExiste = missoesRepository.findById(id);
+        if(missaoExiste.isPresent()) {
+            MissoesModel missaoAtualizada = missoesMapper.map(missao);
+            missaoAtualizada.setId(id);
+            MissoesModel missaoGravada = missoesRepository.save(missaoAtualizada);
+            return missoesMapper.map(missaoGravada);
         }
         return null;
 
